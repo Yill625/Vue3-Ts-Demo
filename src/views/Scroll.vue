@@ -20,9 +20,9 @@ export default defineComponent({
     [Button.name]: Button
   },
   mounted() {
-    this.$nextTick(() => {
+    setTimeout(() => {
       new BScroll('.wrapper')
-    })
+    }, 20)
   }
 })
 </script>
