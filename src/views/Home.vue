@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <input type="number" pattern="\d*" />
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Wel11222333333come to Your Vue.js + TypeScript App" />
   </div>
