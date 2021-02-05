@@ -4,7 +4,7 @@
     <img alt="Vue logo" src="../assets/logo.png" />
     <HelloWorld msg="Wel11222333333come to Your Vue.js + TypeScript App" />
   </div>
-  <van-button type="primary" block>块级元素</van-button>
+  <van-button type="primary" block>块级元素{{ a }}</van-button>
 </template>
 
 <script lang="ts">
@@ -14,6 +14,12 @@ import { Button } from 'vant'
 
 export default defineComponent({
   name: 'Home',
+  data() {
+    const tset = { a: 0 }
+    return {
+      a: tset?.a ?? 2
+    }
+  },
   components: {
     HelloWorld,
     [Button.name]: Button
