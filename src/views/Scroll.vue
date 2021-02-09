@@ -6,6 +6,11 @@
         class="vibrate-1"
         src="../assets/logo.png"
       />
+      <div class="ants-border">
+        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium,
+        debitis vel quam tempora ut nisi voluptatibus rem ab. Quas, cum. Itaque,
+        dignissimos! Quos, eos placeat eveniet quasi amet eius officiis!
+      </div>
       <HelloWorld msg="Wel11222333333come to Your Vue.js + TypeScript App" />
     </div>
   </div>
@@ -104,6 +109,21 @@ export default defineComponent({
   100% {
     -webkit-transform: translate(0);
     transform: translate(0);
+  }
+}
+.ants-border {
+  width: 500px;
+  padding: 1em;
+  border: 1px solid transparent;
+  background-image: linear-gradient(white, white),
+    repeating-linear-gradient(-45deg, #000 0%, #000 25%, #fff 0%, #fff 50%);
+  background-size: 10px 10px;
+  background-clip: padding-box, border-box;
+  animation: ants 10s linear infinite;
+}
+@keyframes ants {
+  to {
+    background-position: 100%;
   }
 }
 </style>
