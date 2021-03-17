@@ -31,7 +31,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 .wrapper {
   height: 600px;
   overflow: hidden;
