@@ -2,12 +2,7 @@
   <div class="home">
     <div class="heart-loading">
       <ul style="--line-count: 9">
-        <li
-          v-for="v in 9"
-          :key="v"
-          :class="`line-${v}`"
-          :style="`--line-index: ${v}`"
-        ></li>
+        <li v-for="v in 9" :key="v" :class="`line-${v}`" :style="`--line-index: ${v}`"></li>
       </ul>
     </div>
     <input type="number" pattern="\d*" />
