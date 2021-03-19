@@ -7,32 +7,32 @@
     </div>
     <input type="number" pattern="\d*" />
     <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Wel11222333333come to Your Vue.js + TypeScript App" />
     <div class="text">
       发生的法第三方士大夫颠三倒四反倒是发送到发生的发ffff的是发送到发送到发的范德萨范德萨发斯蒂芬
     </div>
   </div>
-  <van-button type="primary" block>块级元素{{ a }}</van-button>
+  <van-button type="primary" block>块级元素{{ readersNumber }}</van-button>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
-import HelloWorld from '@/components/HelloWorld.vue' // @ is an alias to /src
+import { ref, reactive } from 'vue'
 import { Button } from 'vant'
 
-export default defineComponent({
-  name: 'Home',
-  data() {
-    const tset = { a: 0 }
-    return {
-      a: tset?.a ?? 2
-    }
-  },
+export default {
   components: {
-    HelloWorld,
     [Button.name]: Button
+  },
+  setup() {
+    const readersNumber = ref(0)
+    const book = reactive({ title: 'Vue 3 Guide' })
+
+    // expose to template
+    return {
+      readersNumber,
+      book
+    }
   }
-})
+}
 </script>
 <style lang="scss" scoped>
 .heart-loading {
