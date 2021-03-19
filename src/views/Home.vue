@@ -1,21 +1,16 @@
 <template>
-  <div class="home">
-    <div class="heart-loading">
-      <ul style="--line-count: 9">
-        <li v-for="v in 9" :key="v" :class="`line-${v}`" :style="`--line-index: ${v}`"></li>
-      </ul>
-    </div>
-    <input type="number" pattern="\d*" />
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <div class="text">
-      发生的法第三方士大夫颠三倒四反倒是发送到发生的发ffff的是发送到发送到发的范德萨范德萨发斯蒂芬
-    </div>
+  <div>
+    vue3 新特性
   </div>
-  <van-button type="primary" block>块级元素{{ readersNumber }}</van-button>
+  <div>计时器{{ counter }}</div>
+  <van-button type="primary" @click="add">add</van-button>
+
+  <div>ref使用对象:用户年龄{{ age }} 用户名字{{ name }}</div>
+  <van-button @click="addAge" type="primary">修改年龄</van-button>
 </template>
 
 <script lang="ts">
-import { ref, reactive } from 'vue'
+import { reactive, ref, toRefs, watchEffect } from 'vue'
 import { Button } from 'vant'
 
 export default {
@@ -23,140 +18,42 @@ export default {
     [Button.name]: Button
   },
   setup() {
-    const readersNumber = ref(0)
-    const book = reactive({ title: 'Vue 3 Guide' })
-
-    // expose to template
-    return {
-      readersNumber,
-      book
+    // 计时器
+    const counter = ref(0)
+    const add = () => {
+      counter.value++
     }
+
+    const user = reactive({ name: 12, age: 11 })
+    const addAge = () => {
+      user.age++
+    }
+    // 自动收集依赖 查看响应数据的变化
+    // watchEffect 不需要手动传入依赖
+    // watchEffect 会先执行一次用来自动收集依赖
+    // watchEffect 无法获取到变化前的值， 只能获取变化后的值
+    watchEffect(() => {
+      console.log(user.age)
+    })
+    // watch(
+    //   () => user.age,
+    //   (curAge, preAge) => {
+    //     console.log('新值:', curAge, '老值:', preAge)
+    //   }
+    // )
+
+    const state = reactive({
+      room: {
+        id: 100,
+        attrs: {
+          size: '140平方米',
+          type: '三室两厅'
+        }
+      }
+    })
+
+    return { counter, add, ...toRefs(user), addAge, ...toRefs(state) }
   }
 }
 </script>
-<style lang="scss" scoped>
-.heart-loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 200px;
-  height: 200px;
-  ul {
-    display: flex;
-    justify-content: space-between;
-    width: 150px;
-    height: 10px;
-  }
-  li {
-    --Θ: calc(var(--line-index) / var(--line-count) * 0.5turn);
-    --time: calc((var(--line-index) - 1) * 40ms);
-    border-radius: 5px;
-    width: 10px;
-    height: 10px;
-    background-color: #3c9;
-    filter: hue-rotate(var(--Θ));
-    animation-duration: 1s;
-    animation-delay: var(--time);
-    animation-iteration-count: infinite;
-    &.line-1,
-    &.line-9 {
-      animation-name: beat-1;
-    }
-    &.line-2,
-    &.line-8 {
-      animation-name: beat-2;
-    }
-    &.line-3,
-    &.line-7 {
-      animation-name: beat-3;
-    }
-    &.line-4,
-    &.line-6 {
-      animation-name: beat-4;
-    }
-    &.line-5 {
-      animation-name: beat-5;
-    }
-  }
-}
-@keyframes beat-1 {
-  0%,
-  10%,
-  90%,
-  100% {
-    height: 10px;
-  }
-  45%,
-  55% {
-    height: 30px;
-    transform: translate3d(0, -15px, 0);
-  }
-}
-@keyframes beat-2 {
-  0%,
-  10%,
-  90%,
-  100% {
-    height: 10px;
-  }
-  45%,
-  55% {
-    height: 60px;
-    transform: translate3d(0, -30px, 0);
-  }
-}
-@keyframes beat-3 {
-  0%,
-  10%,
-  90%,
-  100% {
-    height: 10px;
-  }
-  45%,
-  55% {
-    height: 80px;
-    transform: translate3d(0, -40px, 0);
-  }
-}
-@keyframes beat-4 {
-  0%,
-  10%,
-  90%,
-  100% {
-    height: 10px;
-  }
-  45%,
-  55% {
-    height: 90px;
-    transform: translate3d(0, -30px, 0);
-  }
-}
-@keyframes beat-5 {
-  0%,
-  10%,
-  90%,
-  100% {
-    height: 10px;
-  }
-  45%,
-  55% {
-    height: 90px;
-    transform: translate3d(0, -20px, 0);
-  }
-}
-.text {
-  overflow: hidden;
-  position: relative;
-  max-height: 120px;
-  line-height: 40px;
-  width: 200px;
-}
-.text::after {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  padding-left: 20px;
-  background: linear-gradient(to right, transparent, #fff 50%);
-  content: '...';
-}
-</style>
+<style lang="scss" scoped></style>
