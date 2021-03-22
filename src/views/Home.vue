@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { reactive, ref, toRefs, watchEffect } from 'vue'
-import { Button } from 'vant'
+import { Button, Toast } from 'vant'
 
 export default {
   components: {
@@ -33,7 +33,7 @@ export default {
     // watchEffect 会先执行一次用来自动收集依赖
     // watchEffect 无法获取到变化前的值， 只能获取变化后的值
     watchEffect(() => {
-      console.log(user.age)
+      Toast(user.age)
     })
     // watch(
     //   () => user.age,
